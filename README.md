@@ -15,6 +15,10 @@ name, what you're working on, and how you like things.
 
 > Project **#16** of the *"30 AI Projects in 15 Days"* challenge. Focus: **memory architecture + state.**
 
+![Demo: tell it about yourself, reload the page, and it still remembers you](demo.gif)
+
+*Above: I introduce myself → facts land in the Memory panel → **the page reloads** (chat wipes to blank) → I ask "what do you remember about me?" → it recalls everything from the previous session.*
+
 ## The lesson: buffer vs long-term memory
 Most chatbots only have a **conversation buffer** — the current session's messages. Reload and they forget
 you. This one adds **long-term memory**, in four moves:
