@@ -1,0 +1,134 @@
+/* ============================================================================
+   GRITAI DESIGN SYSTEM — "Engineered / Industrial"
+   Dark · grit-orange · Archivo + IBM Plex · blueprint grid + grain.
+   Canonical source of truth for every GritAI app (30-in-15 #1-30) + the hub.
+   Rob-approved 2026-09-05 (#9 pilot: design-critic 5.71 -> 7.57).
+
+   HOW TO USE: embed this <style> verbatim in an app's page, add the Google Fonts
+   <link> below, then build the body from the component classes here. Keep the
+   header (monogram + app name + tags), grit-orange as the ONLY accent, dark bg.
+
+   FONTS (add to <head>):
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+   ============================================================================ */
+:root{
+ --bg:#0a0b0e; --bg2:#0e1015; --panel:#111318; --panel2:#15181f;
+ --ink:#eef0f4; --dim:#9aa1b0; --dim2:#5f6675; --line:#20242e; --line2:#2b303c;
+ --grit:#ff5a2a; --grit2:#ff7d54; --grit-dim:#c9451f; --ok:#5fd08a; --bad:#ff6b6b;
+ --disp:'Archivo',system-ui,sans-serif; --body:'IBM Plex Sans',system-ui,sans-serif;
+ --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6;
+ -webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
+/* blueprint grid + vignette */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:linear-gradient(0deg,transparent 95%,rgba(255,90,42,.04) 100%),
+  repeating-linear-gradient(90deg,transparent 0 63px,rgba(255,255,255,.018) 63px 64px),
+  repeating-linear-gradient(0deg,transparent 0 63px,rgba(255,255,255,.018) 63px 64px),
+  radial-gradient(120% 80% at 50% -10%,#141821 0%,var(--bg) 55%)}
+/* film grain */
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 28px 70px}
+
+/* ---- header band (monogram SVG + wordmark + tags) ---- */
+header{display:flex;align-items:center;gap:16px;padding:22px 0 18px;border-bottom:1px solid var(--line);animation:fade .6s .02s both}
+.mark{width:38px;height:38px;flex:none}.mark svg{display:block}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand .co{font-family:var(--disp);font-weight:900;font-size:19px;letter-spacing:.5px}.brand .co b{color:var(--grit)}
+.brand .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim2);margin-top:5px}
+.tags{margin-left:auto;display:flex;gap:8px}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line2);border-radius:2px;padding:5px 9px}
+.tag.hot{color:var(--grit);border-color:var(--grit-dim)}
+/* canonical monogram SVG (paste in .mark):
+ <svg width="38" height="38" viewBox="0 0 38 38" fill="none"><rect x="1" y="1" width="36" height="36" rx="2" stroke="#2b303c"/><path d="M27 12.5A9 9 0 1 0 28 22H19" stroke="#ff5a2a" stroke-width="2.4" stroke-linecap="square"/><rect x="10.5" y="10.5" width="3" height="3" fill="#ff5a2a"/></svg> */
+
+/* ---- hero ---- */
+.hero{padding:34px 0 26px;animation:fade .6s .12s both}
+.hero h1{font-family:var(--disp);font-weight:800;font-size:clamp(30px,5.4vw,52px);line-height:1.02;letter-spacing:-.02em;margin:0;max-width:16ch}
+.hero h1 em{font-style:normal;color:var(--grit)}
+.hero p{color:var(--dim);max-width:56ch;margin:16px 0 0;font-size:15.5px}
+
+/* ---- section label (01 · NAME + rule) ---- */
+.sec{display:flex;align-items:center;gap:14px;margin:30px 0 14px}
+.sec .num{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--grit);letter-spacing:.1em}
+.sec .name{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--dim)}
+.sec .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+
+/* ---- panels ---- */
+.panel{border:1px solid var(--line);border-radius:3px;background:linear-gradient(180deg,var(--panel),var(--bg2))}
+.card{border:1px solid var(--line2);border-radius:3px;background:var(--panel);padding:18px 20px}
+.card.accent{border-left:2px solid var(--grit)}
+
+/* ---- input field (terminal) ---- */
+.field{display:flex;align-items:stretch;border:1px solid var(--line2);border-radius:3px;background:var(--panel);overflow:hidden;transition:border-color .18s}
+.field:focus-within{border-color:var(--grit-dim)}
+.field .car{font-family:var(--mono);color:var(--grit);padding:16px 0 16px 16px;font-size:15px;user-select:none}
+.field input,.field textarea{flex:1;background:transparent;border:0;outline:none;color:var(--ink);font-family:var(--body);font-size:15.5px;padding:16px 14px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:var(--dim2)}
+textarea.ta{width:100%;min-height:140px;border:1px solid var(--line2);border-radius:3px;background:var(--panel);color:var(--ink);font-family:var(--body);font-size:15px;padding:14px 16px;outline:none;resize:vertical}
+textarea.ta:focus{border-color:var(--grit-dim)}
+
+/* ---- buttons ---- */
+.run{border:0;background:var(--grit);color:#140a06;font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:0 24px;cursor:pointer;transition:.16s;box-shadow:-1px 0 0 var(--grit-dim)}
+.run:hover{background:var(--grit2);box-shadow:0 0 26px -4px rgba(255,90,42,.55)}
+.run:disabled{opacity:.55;cursor:default;box-shadow:none}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:3px;background:var(--grit);color:#140a06;font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:12px 22px;cursor:pointer;transition:.16s}
+.btn:hover{background:var(--grit2);box-shadow:0 0 26px -4px rgba(255,90,42,.55)}
+.btn.ghost{background:transparent;color:var(--dim);border:1px solid var(--line2)}
+.btn.ghost:hover{color:var(--grit);border-color:var(--grit-dim);background:transparent;box-shadow:none}
+
+/* ---- chips / controls ---- */
+.chip{font-family:var(--mono);font-size:12px;color:var(--dim);background:var(--panel);border:1px solid var(--line);border-radius:2px;padding:8px 11px;cursor:pointer;transition:.15s}
+.chip:hover{color:var(--grit);border-color:var(--grit-dim)}
+.chip .pt{color:var(--dim2);margin-right:7px}
+select,.select{padding:10px 12px;border:1px solid var(--line2);border-radius:3px;background:var(--panel);color:var(--ink);font-family:var(--mono);font-size:13px;outline:none;cursor:pointer}
+select:focus{border-color:var(--grit-dim)}
+label.lbl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.24em;color:var(--dim2);display:block;margin-bottom:6px}
+
+/* ---- mono log / trace rows ---- */
+.log{font-family:var(--mono);font-size:13px;line-height:1.75}
+.row{display:grid;grid-template-columns:22px auto 1fr;gap:0 12px;padding:13px 18px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .mk{color:var(--grit);font-weight:600}
+.row .tn{color:var(--grit2);text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+.row .rd{color:var(--ink);word-break:break-word}.row .rd .arg{color:var(--dim2)}
+
+/* ---- tables ---- */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--dim2);font-weight:500;padding:11px 14px;border-bottom:1px solid var(--line2);background:var(--bg2)}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.tablewrap{border:1px solid var(--line);border-radius:3px;overflow:hidden;overflow-x:auto}
+
+/* ---- chat bubbles ---- */
+.msg{max-width:78%;padding:12px 15px;border-radius:3px;font-size:15px;line-height:1.55;margin-bottom:12px}
+.msg.user{margin-left:auto;background:var(--panel2);border:1px solid var(--line2)}
+.msg.bot{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--grit)}
+
+/* ---- badges / pills ---- */
+.badge{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;padding:3px 9px;border-radius:2px;border:1px solid var(--line2);color:var(--dim)}
+.badge.on{color:var(--grit);border-color:var(--grit-dim)}
+.hl{color:var(--grit);font-weight:600;font-family:var(--mono)}
+
+/* ---- answer/output prose ---- */
+.prose{font-size:16px;line-height:1.65}.prose p{margin:0 0 12px}.prose p:last-child{margin-bottom:0}.prose b{color:var(--ink)}
+
+/* ---- spinner ---- */
+.spin{display:inline-flex;gap:6px;padding:16px 18px}.spin span{width:8px;height:8px;border-radius:50%;background:var(--grit);opacity:.5;animation:bd 1.2s infinite}
+.spin span:nth-child(2){animation-delay:.18s}.spin span:nth-child(3){animation-delay:.36s}
+
+/* ---- footer ---- */
+footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--dim2);display:flex;gap:16px;flex-wrap:wrap;animation:fade .6s .5s both}
+footer .b{color:var(--dim)}footer .sp{margin-left:auto}
+footer a{color:var(--dim);text-decoration:none}footer a:hover{color:var(--grit)}
+
+/* ---- reveal animations ---- */
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes slidein{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes bd{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-6px);opacity:1}}
+.rvl{animation:fade .6s both}
